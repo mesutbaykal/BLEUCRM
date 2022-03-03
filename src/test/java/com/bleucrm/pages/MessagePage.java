@@ -3,6 +3,8 @@ package com.bleucrm.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class MessagePage extends BasePage {
 
     @FindBy(xpath ="//*[@id='feed-add-post-destination-container']")
@@ -29,8 +31,8 @@ public class MessagePage extends BasePage {
     @FindBy(xpath = "//*[@data-id='U512']/span[1]")
     public WebElement selectedUser;
     
-    @FindBy(xpath = "//*[@class='bxhtmled-top-bar-btn bxhtmled-button-quote bxhtmled-top-bar-btn-active']")
-    public static WebElement commaIcon;
+    @FindBy(css=".bxhtmled-top-bar-btn.bxhtmled-button-quote")
+    public WebElement commaIcon;
 
     @FindBy(xpath = "//*[@class='bxhtmled-quote']")
     public WebElement quoteTextBox;
@@ -38,15 +40,20 @@ public class MessagePage extends BasePage {
     @FindBy(xpath = "//*[@id='bx-b-mention-blogPostForm']")
     public WebElement addMention;
 
+    @FindBy(xpath = "//a[contains(@id, '_last_U513')]/div/div")
+    public WebElement mentionedUser;
+
     @FindBy(xpath ="//*[@id='mention65762191_last_U513']")
     public WebElement mentioned;
 
-    @FindBy(xpath = "//*[@id='microoPostFormLHE_blogPostForm']")
+    @FindBy(tagName = "body")
     public WebElement messageBox;
 
     @FindBy(xpath = "//*[@id='blog-submit-button-save']")
     public WebElement sendButton;
 
-    @FindBy(xpath = "//*[@id='blog_post_body_399']")
+    @FindBy(xpath = "(//div[@class='feed-post-text-block-inner-inner'])[1]")
     public WebElement postMessage;
+
+    public String writtenmessage="123*#cydeo$&/";
 }

@@ -12,6 +12,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.remote.BrowserType;
 import org.w3c.dom.html.HTMLInputElement;
 
 public class MessageStepDefs {
@@ -33,6 +34,7 @@ public class MessageStepDefs {
     @When("User selects Employees and Departments")
     public void user_selects_Employees_and_Departments() {
         messagePage.employee.click();
+        //BrowserUtils.waitForClickablility(messagePage.humanResource,10);
         messagePage.humanResource.click();
         messagePage.allDep.click();
         messagePage.user.click();
@@ -94,20 +96,29 @@ public class MessageStepDefs {
     @When("user enters a message")
     public void user_enters_a_message() {
         Driver.get().switchTo().frame(0);
+        BrowserUtils.waitFor(2);
         messagePage.messageBox.sendKeys(messagePage.writtenmessage);
-        Driver.get().switchTo().parentFrame();
+        Driver.get().switchTo().defaultContent();
     }
 
     @When("User clicks on the send button")
     public void user_clicks_on_the_send_button() {
+        BrowserUtils.waitFor(2);
+        Driver.get().findElement(By.cssSelector("span[class='popup-window-close-icon']")).click();
         messagePage.sendButton.click();
     }
 
     @Then("User should see the message on Activity Stream page")
     public void user_should_see_the_message_on_Activity_Stream_page() {
-
-        String actualMessage=messagePage.postMessage.getText();
-        Assert.assertEquals(messagePage.writtenmessage,actualMessage);
+       try {
+           BrowserUtils.waitFor(2);
+           String actualMessage = messagePage.postMessage.getText();
+           Assert.assertEquals(messagePage.writtenmessage, actualMessage);
+       }catch(Exception e){
+           e.printStackTrace();
+       }finally{
+           messagePage.logOutUser();
+       }
     }
 
 

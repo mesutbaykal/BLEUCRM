@@ -25,6 +25,7 @@ Feature: BlEUCRM Sending Message Functionalities
 
   Scenario: User should be able to send a message
     And user enters a message
+    And User clicks on the To box
     And User selects Employees and Departments
     And User clicks on the send button
     Then User should see the message on Activity Stream page

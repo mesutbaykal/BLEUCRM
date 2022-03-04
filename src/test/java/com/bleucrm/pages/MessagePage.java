@@ -72,12 +72,13 @@ public class MessagePage extends BasePage {
 
 
     JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+    Alert alert = Driver.get().switchTo().alert();
+
     public void logOutUser(){
         userBlok.click();
         BrowserUtils.waitForClickablility(logOutBtn,10);
         jse.executeScript("arguments[0].click();",logOutBtn);
         BrowserUtils.waitFor(2);
-        Alert alert = Driver.get().switchTo().alert();
         alert.accept();
     }
 }

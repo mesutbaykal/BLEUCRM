@@ -1,13 +1,8 @@
 package com.bleucrm.pages;
 
-import com.bleucrm.utilities.BrowserUtils;
-import com.bleucrm.utilities.Driver;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
 
 public class MessagePage extends BasePage {
 
@@ -20,7 +15,7 @@ public class MessagePage extends BasePage {
     @FindBy(css = ".bx-finder-box-tab.bx-lm-tab-department")
     public WebElement employee;
 
-    @FindBy(xpath = "(//a[@class='bx-finder-company-department-inner'])[2]")
+    @FindBy(xpath = "(//*[text()='Human resources'])[3]")
     public WebElement humanResource;
 
     @FindBy(xpath = "//*[.='All department and subdepartment employees']")
@@ -53,32 +48,11 @@ public class MessagePage extends BasePage {
     @FindBy(tagName = "body")
     public WebElement messageBox;
 
-    @FindBy(css = "#blog-submit-button-save")
+    @FindBy(xpath = "//*[@id='blog-submit-button-save']")
     public WebElement sendButton;
 
     @FindBy(xpath = "(//div[@class='feed-post-text-block-inner-inner'])[1]")
     public WebElement postMessage;
 
-    @FindBy(css = "#feed-add-buttons-blockblogPostForm")
-    public WebElement clickAnyWhere;
-
-    @FindBy(css = "#user-block")
-    public WebElement userBlok;
-
-    @FindBy(linkText = "Log out")
-    public WebElement logOutBtn;
-
     public String writtenmessage="123*#cydeo$&/";
-
-
-    JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
-    Alert alert = Driver.get().switchTo().alert();
-
-    public void logOutUser(){
-        userBlok.click();
-        BrowserUtils.waitForClickablility(logOutBtn,10);
-        jse.executeScript("arguments[0].click();",logOutBtn);
-        BrowserUtils.waitFor(2);
-        alert.accept();
-    }
 }
